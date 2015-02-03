@@ -119,7 +119,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, '{{ project_name }}/templates'),
+    os.path.join(BASE_DIR, 'templates'),
     os.path.join(BASE_DIR, 'theme/templates'),
 )
 
