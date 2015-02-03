@@ -22,7 +22,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['*']
 
-SECRET_KEY = '{{ secret_key }}'
+SECRET_KEY = 'all=ixafr!gseb)^m95a68ej-i71+(p^kp8hw8v)=j@x5lx4n+s45saints'
 
 
 # Application definition
@@ -54,9 +54,9 @@ MIDDLEWARE_CLASSES = (
     'blanc_basic_pages.middleware.PageFallbackMiddleware',
 )
 
-ROOT_URLCONF = '{{ project_name }}.urls'
+ROOT_URLCONF = 'djangoallsaints.urls'
 
-WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
+WSGI_APPLICATION = 'djangoallsaints.wsgi.application'
 
 
 # Database
@@ -64,7 +64,14 @@ WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
 
 import dj_database_url
 DATABASES = {
-    'default': dj_database_url.config(),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'allsaints',
+        'USER': 'django',
+        'PASSWORD': 'django',
+        'HOST': 'localhost',
+        'PORT': '',
+    },
 }
 
 
@@ -119,7 +126,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'djangoallsaints/templates'),
     os.path.join(BASE_DIR, 'theme/templates'),
 )
 

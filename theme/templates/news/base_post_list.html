@@ -7,14 +7,14 @@
     {% for i in object_list %}
         <li class="post summary {% if i.image %}image{% endif %}">
             {% if i.image %}
-                {% thumbnail i.image.file 480x360 upscale as thumb %}
+                {% thumbnail i.image.file 461x320 upscale as thumb %}
                 <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" /></a>
             {% endif %}
             <h1><a href="{{ i.get_absolute_url }}">{{ i }}</a></h1>
             <h6>{{ i.date|date:"j M Y" }} &bull; <a href="{{ i.category.get_absolute_url }}">{{ i.category }}</a></h6>
             <div class="teaser">
-                {% if i.excerpt %}
-                    {{ i.excerpt|linebreaks }}
+                {% if i.teaser %}
+                    {{ i.teaser|linebreaks }}
                 {% else %}
                     {{ i.content|safe }}
                 {% endif %}

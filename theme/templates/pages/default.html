@@ -8,37 +8,12 @@
 
 
 {% block nav %}
-<ul>
-    <input type="checkbox" id="toggle-nav" />
-    <label for="toggle-nav" class="toggle-nav" onclick></label>
-    <ul class="menu-nav">
-        {% get_root_pages page as root_pages %}
-        {% for page, page_active in root_pages %}
-            <li><a href="{{ page.get_absolute_url }}"{% if page_active %} class="active"{% endif %}>{{ page.title }}</a></li>
-        {% endfor %}
-    </ul>
-</ul>
+{% include "includes/nav.html" with current_page=page only %}
 {% endblock nav %}
 
 
 {% block subnav %}
-<div class="subnav">
-    <input type="checkbox" id="toggle" />
-    <label for="toggle" class="toggle" onclick></label>
-    <ul class="menu">
-        {% get_pages_at_level page as subnav_pages %}
-        {% if subnav_pages %}
-            {% for page, page_active in subnav_pages %}
-                <li><a href="{{ page.get_absolute_url }}"{% if page_active %} class="active"{% endif %}>{{ page.title }}</a></li>
-            {% endfor %}
-        {% endif %}
-        <li><a href="#">Google</a></li>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Youtube</a></li>
-        <li><a href="#">Twitter</a></li>
-    </ul>
-</div>
-
+{% include "includes/subnav.html" with current_page=page only %}
 {% endblock subnav %}
 
 
