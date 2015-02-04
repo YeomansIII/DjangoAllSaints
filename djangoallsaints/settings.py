@@ -28,6 +28,8 @@ SECRET_KEY = 'all=ixafr!gseb)^m95a68ej-i71+(p^kp8hw8v)=j@x5lx4n+s45saints'
 # Application definition
 
 INSTALLED_APPS = (
+    'django_admin_bootstrapped.bootstrap3',
+    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +43,7 @@ INSTALLED_APPS = (
     'blanc_basic_pages',
     'blanc_basic_events',
     'easy_thumbnails',
+    'easypage',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -62,7 +65,6 @@ WSGI_APPLICATION = 'djangoallsaints.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
 
-import dj_database_url
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -126,6 +128,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
 
 TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
     os.path.join(BASE_DIR, 'djangoallsaints/templates'),
     os.path.join(BASE_DIR, 'theme/templates'),
 )
@@ -199,7 +202,7 @@ LOGGING = {
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # S3 file storage
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 AWS_S3_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_S3_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
@@ -211,7 +214,7 @@ GZIP_CONTENT_TYPES = ()
 THUMBNAIL_SUBDIR = 'thumbs'
 THUMBNAIL_PRESERVE_EXTENSIONS = ('png',)
 THUMBNAIL_QUALITY = 100
-THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+THUMBNAIL_DEFAULT_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 ## Django Church applications
 # - Change the uncommented sections
@@ -224,12 +227,12 @@ THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 # PAGE_SHOW_LOGIN = False
 
 ## News
-NEWS_TITLE = 'My Church'
+NEWS_TITLE = 'All Saints National Catholic Church'
 #NEWS_PER_PAGE = 10
 #NEWS_FEED_LIMIT = 10
 
 # Calendar
-EVENTS_CALENDAR_NAME = 'My Church'
+EVENTS_CALENDAR_NAME = 'All Saints National Catholic Church'
 # EVENTS_CALENDAR_DESCRIPTION = 'Events Calendar'
 # EVENTS_START_SUNDAY = True
 
