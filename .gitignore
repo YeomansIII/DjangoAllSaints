@@ -2,3 +2,5 @@
 venv
 staticfiles
 media
+*/migrations
+migrations
