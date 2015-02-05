@@ -1,0 +1,13 @@
+{% extends "layouts/base.html" %} {% load news_tags %} {% block endhead %}
+<link rel="alternate" type="application/rss+xml" title="News" href="{% url 'blanc_basic_news:feed' %}" /> {% endblock endhead %}
+
+{% block subnav %}
+<nav class="subnav">
+  <ul>
+    {% get_news_categories as news_categories %} {% for i in news_categories %}
+    <li><a href="{{ i.get_absolute_url }}" {% if category == i or object.category == i %} class="active" {% endif %}>{{ i }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</nav>
+{% endblock subnav %}

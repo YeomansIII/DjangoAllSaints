@@ -1,0 +1,60 @@
+{% extends "news/base.html" %} {% load thumbnail %} {% block content %}
+<script src="/static/js/freewall.js"></script>
+<div class="container" style="margin-bottom: 100px;">
+
+  <div id="freewall" class="free-wall post-list">
+    {% for i in object_list %}
+    <div class="brick" style="width: 500px">
+      <div class="box">
+        <div class="box-icon">
+          {% if i.image %} {% thumbnail i.image.file 150x150 upscale as thumb %}
+          <a href="{{ i.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ i }}" class="img-thumbnail" />
+          </a>
+          {% else %}
+          <a href="http://placehold.it/150x150"><img src="http://placehold.it/150x150" alt="News" class="img-thumbnail" />
+          </a>
+          {% endif %}
+        </div>
+        <div class="info">
+          <h2 class="text-center"><a href="{{ i.get_absolute_url }}">{{ i }}</a></h2>
+          <h6 class="text-center">{{ i.date|date:"j M Y" }} &bull; <a href="{{ i.category.get_absolute_url }}">{{ i.category }}</a></h6>
+          <hr> {% if i.teaser %} {{ i.teaser|linebreaks }} {% else %}
+          <p> {{ i.content|safe }} </p>{% endif %}
+          <a class="btn-xs btn-info" href="{{ i.get_absolute_url }}">Read More</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <script type="text/javascript">
+    var wall = new freewall("#freewall");
+    wall.reset({
+      selector: '.brick',
+      animate: true,
+      cellW: function(width) {
+        var cellWidth = width / 2;
+        return cellWidth - 20;
+      },
+      cellH: 'auto',
+      onResize: function() {
+        wall.fitWidth();
+      }
+    });
+
+    wall.container.find('.brick img').load(function() {
+      wall.fitWidth();
+    });
+  </script>
+
+  {% if is_paginated %}
+  <nav class="pagination">
+    {% if page_obj.has_previous %}
+    <a class="prev" href="?page={{ page_obj.previous_page_number }}">Prev</a> {% endif %} {% if page_obj.has_next %}
+    <a class="next" href="?page={{ page_obj.next_page_number }}">Next</a> {% endif %}
+  </nav>
+  {% endif %}
+
+</div>
+
+{% endblock content %}
