@@ -48,8 +48,18 @@
   <!-- Three columns of text below the carousel -->
   <div class="row">
     {% for item in quicklinks %}
-    <div class="col-lg-4">
+    <div class="col-lg-4 col-sm-4 hidden-xs">
       <img class="img-circle" src="/media/{{ item.image_file.file }}" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+      <h2>{{ item.heading }}</h2>
+      <p>{{ item.body }}</p>
+      <p><a class="btn btn-default" href="{{ item.link }}" role="button">{{ item.button_text }}</a>
+      </p>
+    </div>
+    {% endfor %}
+
+    {% for item in quicklinks %}
+    <div class="col-xs-12 hidden-lg hidden-md hidden-sm text-center">
+      <!--<img class="img-circle" src="/media/{{ item.image_file.file }}" alt="Generic placeholder image" style="width: 140px; height: 140px;">-->
       <h2>{{ item.heading }}</h2>
       <p>{{ item.body }}</p>
       <p><a class="btn btn-default" href="{{ item.link }}" role="button">{{ item.button_text }}</a>
