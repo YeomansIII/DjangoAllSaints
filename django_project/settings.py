@@ -57,9 +57,9 @@ MIDDLEWARE_CLASSES = (
     'blanc_basic_pages.middleware.PageFallbackMiddleware',
 )
 
-ROOT_URLCONF = 'djangoallsaints.urls'
+ROOT_URLCONF = 'django_project.urls'
 
-WSGI_APPLICATION = 'djangoallsaints.wsgi.application'
+WSGI_APPLICATION = 'django_project.wsgi.application'
 
 
 # Database
@@ -129,7 +129,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
-    os.path.join(BASE_DIR, 'djangoallsaints/templates'),
+    os.path.join(BASE_DIR, 'django_project/templates'),
     os.path.join(BASE_DIR, 'theme/templates'),
 )
 
