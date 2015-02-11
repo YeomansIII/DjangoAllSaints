@@ -1,43 +1,32 @@
-{% extends "news/base.html" %} {% load thumbnail %} {% block content %}
+{% extends "news/base.html" %} {% load thumbnail news_tags %} {% block content %}
+<!--<script src="/static/js/my.js"></script>-->
+<script src="/static/js/freewall.js"></script>
 <div class="container" style="margin-bottom: 100px;">
+    <div class=row>
+        <div class="col-md-3">
+            <div class="news-side" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+                <h3>Categories</h3>
+                {% get_news_categories as news_categories %} {% for cat in news_categories %}
+                <a href="/news/category/{{cat.slug}}">
+                    <h4>{{cat.title}}</h4>
+                </A>
+                {% endfor %}
+                <h3>Archive Dates</h3>
+                {% get_news_months as news_months %} {% for month in news_months reversed %}
+                <a href="/news/{{month|date:'Y'}}/{{month|date:'m'}}">
+                    <h4>{{month|date:"M Y"}}</h4>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
 
-    <script type="text/javascript">
-        function freewallit() {
-            if ($(".brick").css("width") != "100%") {
-                var wall = new freewall("#freewall");
-                wall.reset({
-                    selector: '.brick',
-                    animate: true,
-                    cellW: function(width) {
-                        var cellWidth = width / 2;
-                        return cellWidth - 20;
-                    },
-                    cellH: 'auto',
-                    onResize: function() {
-                        wall.fitWidth();
-                    }
-                });
-
-                wall.container.find('.brick img').load(function() {
-                    wall.fitWidth();
-                });
-                console.log("running");
-            }
-        }
-
-        $(window).resize(function() {
-            freewallit();
-        });
-    </script>
-
-    <div id="freewall" class="free-wall">
-        {% for i in object_list %}
-        <div class="brick">
+        <div class="col-md-9">
+            {% for i in object_list %}
             <div class="box">
                 <div class="box-icon">
                     {% if i.image %} {% thumbnail i.image.file 150x150 upscale as thumb %}
                     <a href="{{ i.get_absolute_url }}">
-                        <img src="{{ thumb.url }}" alt="{{ i }}" class="img-thumbnail" onload="freewallit()" />
+                        <img src="{{ thumb.url }}" alt="{{ i }}" class="img-thumbnail" />
                     </a>
                     {% else %}
                     <a href="http://placehold.it/150x150">
@@ -55,18 +44,16 @@
                     <a class="btn-xs btn-info" href="{{ i.get_absolute_url }}">Read More</a>
                 </div>
             </div>
+            {% endfor %} {% if is_paginated %}
+            <nav class="pagination">
+                {% if page_obj.has_previous %}
+                <a class="prev" href="?page={{ page_obj.previous_page_number }}">Prev</a> {% endif %} {% if page_obj.has_next %}
+                <a class="next" href="?page={{ page_obj.next_page_number }}">Next</a> {% endif %}
+            </nav>
+            {% endif %}
         </div>
-        {% endfor %}
     </div>
-
-    {% if is_paginated %}
-    <nav class="pagination">
-        {% if page_obj.has_previous %}
-        <a class="prev" href="?page={{ page_obj.previous_page_number }}">Prev</a> {% endif %} {% if page_obj.has_next %}
-        <a class="next" href="?page={{ page_obj.next_page_number }}">Next</a> {% endif %}
-    </nav>
-    {% endif %}
-
 </div>
+
 
 {% endblock content %}
