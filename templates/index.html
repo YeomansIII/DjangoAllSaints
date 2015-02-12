@@ -1,11 +1,111 @@
 {% extends 'layouts/base.html' %} {% block title %} ASNCC &bull; Homepage {% endblock %} {% load thumbnail %} {% block content %}
 
-<link href="/static/css/index.css" rel="stylesheet">
+<script src="/static/js/carousel.js"></script>
 
 <!-- Carousel
     ================================================== -->
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
+<div id="home-background">
+
+</div>
+<div class="container">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+
+      <div class="item active">
+        <img src="http://placehold.it/760x400/cccccc/ffffff">
+        <div class="carousel-caption">
+          <h4><a href="#">Lorem ipsum dolor sit amet consetetur sadipscing</a></h4>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+            invidunt ut labore et dolore magna aliquyam erat. <a class="label label-primary" href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank">Free Bootstrap Carousel Collection</a>
+          </p>
+        </div>
+      </div>
+      <!-- End Item -->
+
+      <div class="item">
+        <img src="http://placehold.it/760x400/999999/cccccc">
+        <div class="carousel-caption">
+          <h4><a href="#">consetetur sadipscing elitr, sed diam nonumy eirmod</a></h4>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+            invidunt ut labore et dolore magna aliquyam erat. <a class="label label-primary" href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank">Free Bootstrap Carousel Collection</a>
+          </p>
+        </div>
+      </div>
+      <!-- End Item -->
+
+      <div class="item">
+        <img src="http://placehold.it/760x400/dddddd/333333">
+        <div class="carousel-caption">
+          <h4><a href="#">tempor invidunt ut labore et dolore</a></h4>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+            invidunt ut labore et dolore magna aliquyam erat. <a class="label label-primary" href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank">Free Bootstrap Carousel Collection</a>
+          </p>
+        </div>
+      </div>
+      <!-- End Item -->
+
+      <div class="item">
+        <img src="http://placehold.it/760x400/999999/cccccc">
+        <div class="carousel-caption">
+          <h4><a href="#">magna aliquyam erat, sed diam voluptua</a></h4>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+            invidunt ut labore et dolore magna aliquyam erat. <a class="label label-primary" href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank">Free Bootstrap Carousel Collection</a>
+          </p>
+        </div>
+      </div>
+      <!-- End Item -->
+
+      <div class="item">
+        <img src="http://placehold.it/760x400/dddddd/333333">
+        <div class="carousel-caption">
+          <h4><a href="#">tempor invidunt ut labore et dolore magna aliquyam erat</a></h4>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+            invidunt ut labore et dolore magna aliquyam erat. <a class="label label-primary" href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank">Free Bootstrap Carousel Collection</a>
+          </p>
+        </div>
+      </div>
+      <!-- End Item -->
+
+    </div>
+    <!-- End Carousel Inner -->
+
+
+    <ul class="list-group col-sm-4">
+      <li data-target="#myCarousel" data-slide-to="0" class="list-group-item active">
+        <h4>Lorem ipsum dolor sit amet consetetur sadipscing</h4>
+      </li>
+      <li data-target="#myCarousel" data-slide-to="1" class="list-group-item">
+        <h4>consetetur sadipscing elitr, sed diam nonumy eirmod</h4>
+      </li>
+      <li data-target="#myCarousel" data-slide-to="2" class="list-group-item">
+        <h4>tempor invidunt ut labore et dolore</h4>
+      </li>
+      <li data-target="#myCarousel" data-slide-to="3" class="list-group-item">
+        <h4>magna aliquyam erat, sed diam voluptua</h4>
+      </li>
+      <li data-target="#myCarousel" data-slide-to="4" class="list-group-item">
+        <h4>tempor invidunt ut labore et dolore magna aliquyam erat</h4>
+      </li>
+    </ul>
+
+    <!-- Controls -->
+    <div class="carousel-controls">
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div>
+
+  </div>
+  <!-- End Carousel -->
+
+</div>
+
+<!--<div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         {% for item in carousel %}
         <li data-target="#myCarousel" data-slide-to="{% cycle '0' '1' '2' '3' '4'%}" class="{% cycle 'active' '' '' '' ''%}"></li>
@@ -14,7 +114,7 @@
     <div class="carousel-inner" role="listbox">
         {% for item in carousel %}
         <div class="item {% cycle 'active' '' '' '' ''%}" style="background: url(/media/{{ item.image_file.file }}); background-size: cover;">
-            <!-- <img src="/media/{{ item.image }}" alt="slide"> -->
+             <img src="/media/{{ item.image }}" alt="slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>{{ item.heading }}</h1>
@@ -36,7 +136,7 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
+</div>-->
 <!-- /.carousel -->
 
 
@@ -44,54 +144,54 @@
     ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
 
-<div class="container marketing">
+<div id="quicklinks" class="container marketing">
 
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-        {% for item in quicklinks %}
-        <div class="col-lg-4 col-sm-4 hidden-xs">
-            <img class="img-circle" src="/media/{{ item.image_file.file }}" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-            <h2>{{ item.heading }}</h2>
-            <p>{{ item.body }}</p>
-            <p><a class="btn btn-default" href="{{ item.link }}" role="button">{{ item.button_text }}</a>
-            </p>
-        </div>
-        {% endfor %} {% for item in quicklinks %}
-        <div class="col-xs-12 hidden-lg hidden-md hidden-sm text-center">
-            <!--<img class="img-circle" src="/media/{{ item.image_file.file }}" alt="Generic placeholder image" style="width: 140px; height: 140px;">-->
-            <h2>{{ item.heading }}</h2>
-            <p>{{ item.body }}</p>
-            <p><a class="btn btn-default" href="{{ item.link }}" role="button">{{ item.button_text }}</a>
-            </p>
-        </div>
-        {% endfor %}
-
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    {% for item in quicklinks %}
+    <div class="col-lg-4 col-sm-4 hidden-xs">
+      <img class="img-circle" src="/media/{{ item.image_file.file }}" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+      <h2>{{ item.heading }}</h2>
+      <p>{{ item.body }}</p>
+      <p><a class="btn btn-default" href="{{ item.link }}" role="button">{{ item.button_text }}</a>
+      </p>
     </div>
-    <!-- /.row -->
-
-
-    <!-- START THE FEATURETTES -->
-
-    {% for item in featurettes %}
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">{{ item.heading1 }} {% if item.heading2 %}
-                <br>
-                <span class="text-muted">{{ item.heading2 }}</span>{% endif %}
-            </h2>
-            <p class="lead">{{ item.body }}</p>
-            {% if item.button_text and item.link %}<a class="btn" href="{{ item.link }}">{{ item.button_text }}</a>{% endif %}
-        </div>
-        <div class="col-md-5">
-            {% thumbnail item.image_file.file 500x500 upscale as thumb %}
-            <img class="featurette-image img-responsive" src="{{ thumb.url }}" alt="Generic placeholder image">
-        </div>
+    {% endfor %} {% for item in quicklinks %}
+    <div class="col-xs-12 hidden-lg hidden-md hidden-sm text-center">
+      <!--<img class="img-circle" src="/media/{{ item.image_file.file }}" alt="Generic placeholder image" style="width: 140px; height: 140px;">-->
+      <h2>{{ item.heading }}</h2>
+      <p>{{ item.body }}</p>
+      <p><a class="btn btn-default" href="{{ item.link }}" role="button">{{ item.button_text }}</a>
+      </p>
     </div>
     {% endfor %}
 
-    <!-- /END THE FEATURETTES -->
+  </div>
+  <!-- /.row -->
+
+
+  <!-- START THE FEATURETTES -->
+
+  {% for item in featurettes %}
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">{{ item.heading1 }} {% if item.heading2 %}
+                <br>
+                <span class="text-muted">{{ item.heading2 }}</span>{% endif %}
+            </h2>
+      <p class="lead">{{ item.body }}</p>
+      {% if item.button_text and item.link %}<a class="btn" href="{{ item.link }}">{{ item.button_text }}</a>{% endif %}
+    </div>
+    <div class="col-md-5">
+      {% thumbnail item.image_file.file 500x500 upscale as thumb %}
+      <img class="featurette-image img-responsive" src="{{ thumb.url }}" alt="Generic placeholder image">
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- /END THE FEATURETTES -->
 
 </div>
 <!-- /.container -->
