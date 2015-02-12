@@ -19,8 +19,9 @@
                 <div class="carousel-caption">
                     <h1>{{ item.heading }}</h1>
                     <p>{{ item.body }}</p>
+                    {% if item.link and item.button_text %}
                     <p><a class="btn btn-lg btn-primary" href="{{ item.link }}" role="button">{{ item.button_text }}</a>
-                    </p>
+                    </p>{% endif %}
                 </div>
             </div>
         </div>
