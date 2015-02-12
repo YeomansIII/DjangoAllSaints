@@ -22,22 +22,22 @@
 
         <div class="col-md-9">
             {% for i in object_list %}
-            <div class="box">
-                <div class="box-icon">
-                    {% if i.image %} {% thumbnail i.image.file 150x150 upscale as thumb %}
+            <div class="box row">
+                {% if i.image %}
+                <div class="no-padding col-md-3">
+                    {% thumbnail i.image.file 250x250 crop as thumb %}
                     <a href="{{ i.get_absolute_url }}">
-                        <img src="{{ thumb.url }}" alt="{{ i }}" class="img-thumbnail" />
+                        <img src="{{ thumb.url }}" alt="{{ i }}" class="" />
                     </a>
-                    {% else %}
-                    <a href="http://placehold.it/150x150">
-                        <img src="http://placehold.it/150x150" alt="News" class="img-thumbnail" />
-                    </a>
-                    {% endif %}
                 </div>
-                <div class="info">
-                    <h2 class="text-center"><a href="{{ i.get_absolute_url }}">{{ i }}</a>
+                <div class="info info-image col-md-9">
+                    {% else %}
+                <div class="info info-noimage col-md-12">
+                    {% endif %}
+
+                    <h2 class=""><a href="{{ i.get_absolute_url }}">{{ i }}</a>
                     </h2>
-                    <h6 class="text-center">{{ i.date|date:"j M Y" }} &bull; <a href="{{ i.category.get_absolute_url }}">{{ i.category }}</a>
+                    <h6 class="">{{ i.date|date:"j M Y" }} &bull; <a href="{{ i.category.get_absolute_url }}">{{ i.category }}</a>
                     </h6>
                     <hr> {% if i.teaser %} {{ i.teaser|linebreaks }} {% else %}
                     <p> {{ i.content|safe }} </p>{% endif %}

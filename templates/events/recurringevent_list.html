@@ -8,41 +8,83 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <section class="regular-events col-md-6">
-            <h1>Weekly Events</h1>
-            {% for i in object_list %} {% ifchanged i.day_of_the_week %}
-            </ul>
-            <h3>{{ i.get_day_of_the_week_display|slice:"0:3" }}</h3>
-            <ul class="event-list {% cycle 'odd' 'even' %}">
-                {% endifchanged %}
-                <div class="well">
-                    <li>
-                        <h4>{{ i }}</h4>
-                        <h5>{{ i.time|date:"g:iA" }} {{ i.frequency }}</h5>
-                        <p>{{ i.description|safe }}</p>
-                    </li>
-                </div>
+        <div class="col-lg-6 col-md-12">
+            <h1 class="events-heading">Weekly Events</h1>
+            <hr>
+            <ul class="event-list">
+                {% for i in object_list %}
+                <li>
+                    <time datetime="{{ i.time|date:" c " }}">
+                        <span class="day-of-week">{{ i.get_day_of_the_week_display|slice:"0:3" }}</span>
+                    </time>
+                    {% if i.image %} {% thumbnail i.image.file 150x150 crop as thumb %}
+                    <img src="{{ thumb.url }}" alt="{{ i }}" /> {% endif %}
+                    <div class="info">
+                        <h2 class="title">{{ i }}</h2>
+                        <p class="desc">{{ i.description|safe }}</p>
+                    </div>
+                    <div class="social">
+                        <ul>
+                            <li class="facebook" style="width:33%;">
+                                <a href="#facebook">
+                                    <span class="fa fa-facebook"></span>
+                                </a>
+                            </li>
+                            <li class="twitter" style="width:34%;">
+                                <a href="#twitter">
+                                    <span class="fa fa-twitter"></span>
+                                </a>
+                            </li>
+                            <li class="google-plus" style="width:33%;">
+                                <a href="#google-plus">
+                                    <span class="fa fa-google-plus"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
                 {% endfor %}
             </ul>
-        </section>
+        </div>
 
-        <section class="special-events col-md-6">
-            <h1>Special events</h1>
+        <div class="col-lg-6 col-md-12">
+            <h1 class="events-heading">Special events</h1>
+            <hr>
             <ul class="event-list">
                 {% for i in view.special_events_this_week %}
-                <div class="well">
-                    <li {% if not i.image %}class="noimage" {% endif %}>
-                        {% if i.image %} {% thumbnail i.image.file 96x96 crop as thumb %}
-                        <a href="{{ i.get_absolute_url }}">
-                            <img src="{{ thumb.url }}" alt="{{ i }}" />
-                        </a>
-                        {% endif %}
-                        <h4><a href="{{ i.get_absolute_url }}">{{ i }}</a>
-                        </h4>
-                        <h5>{{ i.start|date:"j M Y g:iA" }}</h5>
-                        <p>{{ i.summary }}</p>
-                    </li>
-                </div>
+                <li>
+                    <time datetime="{{ i.start|date:" c " }}">
+                        <span class="day">{{ i.start|date:" j " }}</span>
+                        <span class="month">{{ i.start|date:" M " }}</span>
+                        <span class="year">{{ i.start|date:" Y " }}</span>
+                        <span class="time">{{ i.start|date:" P " }}</span>
+                    </time>
+                    {% if i.image %} {% thumbnail i.image.file 150x150 crop as thumb %}
+                    <img src="{{ thumb.url }}" alt="{{ i }}" /> {% endif %}
+                    <div class="info">
+                        <h2 class="title">{{ i }} - {{ i.start|date:" P " }}</h2>
+                        <p class="desc">{{ i.summary|safe }}</p>
+                    </div>
+                    <div class="social">
+                        <ul>
+                            <li class="facebook" style="width:33%;">
+                                <a href="#facebook">
+                                    <span class="fa fa-facebook"></span>
+                                </a>
+                            </li>
+                            <li class="twitter" style="width:34%;">
+                                <a href="#twitter">
+                                    <span class="fa fa-twitter"></span>
+                                </a>
+                            </li>
+                            <li class="google-plus" style="width:33%;">
+                                <a href="#google-plus">
+                                    <span class="fa fa-google-plus"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
                 {% empty %}
                 <li class="noimage">
                     <p>Sorry, there are no special events this week.</p>
@@ -52,7 +94,7 @@
 
             {% with upcoming_count=view.upcoming_special_events.count %} {% if upcoming_count %}
             <a class="more" href="{% url 'blanc_basic_events:specialevent-list' %}">View {{ upcoming_count }} upcoming event{{ upcoming_count|pluralize }}</a> {% endif %} {% endwith %}
-        </section>
+        </div>
     </div>
 </div>
 {% endblock content %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from easypage.models import QuickLink, Carousel
+from easypage.models import QuickLink, Carousel, Featurette
 
 
 class ThreeInstanceAdminMixin(object):
@@ -25,5 +25,9 @@ class QuickLinkAdmin(ThreeInstanceAdminMixin, admin.ModelAdmin):
 class CarouselAdmin(FiveInstanceAdminMixin, admin.ModelAdmin):
     model = Carousel
 
+class FeaturetteAdmin(ThreeInstanceAdminMixin, admin.ModelAdmin):
+    model = Featurette
+
 admin.site.register(QuickLink, QuickLinkAdmin)
 admin.site.register(Carousel, CarouselAdmin)
+admin.site.register(Featurette, FeaturetteAdmin)

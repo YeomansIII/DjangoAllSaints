@@ -6,21 +6,38 @@
 
     <ul class="event-list">
         {% for i in object_list %}
-        <li class="event summary {% if i.image %}image{% endif %}">
-            {% if i.image %} {% thumbnail i.image.file 461x320 upscale as thumb %}
-            <a href="{{ i.get_absolute_url }}">
-                <img src="{{ thumb.url }}" alt="{{ i }}" />
-            </a>
-            {% endif %}
-            <h1><a href="{{ i.get_absolute_url }}">{{ i }}</a>
-            </h1>
-            <h6>
-                {{ i.start|date:"j M Y" }} {{ i.start|date:"g:iA" }} {% if i.start != i.end %} &mdash; {% if i.start.date != i.end.date %} {{ i.end|date:"j M Y" }} {% endif %} {{ i.end|date:"g:iA" }} {% endif %}
-            </h6>
-            <div class="teaser">
-                {{ i.description|safe }}
+        <li>
+            <time datetime="{{ i.start|date:" c " }}">
+                <span class="day">{{ i.start|date:" j " }}</span>
+                <span class="month">{{ i.start|date:" M " }}</span>
+                <span class="year">{{ i.start|date:" Y " }}</span>
+                <span class="time">{{ i.start|date:" P " }}</span>
+            </time>
+            {% if i.image %} {% thumbnail i.image.file 150x150 crop as thumb %}
+            <img src="{{ thumb.url }}" alt="{{ i }}" /> {% endif %}
+            <div class="info">
+                <h2 class="title">{{ i }} - {{ i.start|date:" P " }}</h2>
+                <p class="desc">{{ i.summary|safe }}</p>
             </div>
-            <a class="more" href="{{ i.get_absolute_url }}">Read More</a>
+            <div class="social">
+                <ul>
+                    <li class="facebook" style="width:33%;">
+                        <a href="#facebook">
+                            <span class="fa fa-facebook"></span>
+                        </a>
+                    </li>
+                    <li class="twitter" style="width:34%;">
+                        <a href="#twitter">
+                            <span class="fa fa-twitter"></span>
+                        </a>
+                    </li>
+                    <li class="google-plus" style="width:33%;">
+                        <a href="#google-plus">
+                            <span class="fa fa-google-plus"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </li>
         {% endfor %}
     </ul>
