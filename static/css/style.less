@@ -26,12 +26,12 @@ body {
 .navbar-wrapper .navbar {
     padding-right: 15px;
     padding-left: 15px;
-    color: #FFF !important;
+    color: #fff !important;
     background-color: #4f4b43;
     border: none;
 }
 .navbar-inverse {
-    color: #FFF !important;
+    color: #fff !important;
 }
 .navbar-nav>li:hover {
     background-color: #82836f;
@@ -83,8 +83,8 @@ body {
 }
 #home-background {
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
     background-image: url("../img/canvas-cut.jpg");
     background-size: cover;
@@ -102,48 +102,57 @@ body {
 #myCarousel {
     margin-bottom: 40px;
 }
-#myCarousel a{
-    color: #CCC;
+#myCarousel a {
+    color: #ccc;
     font-weight: bold;
     &:hover {
         color: #333;
     }
 }
 #myCarousel .carousel-caption {
-    left:0;
-	right:0;
-	bottom:0;
-	text-align:left;
-	padding:10px;
-	background:rgba(0,0,0,0.6);
-	text-shadow:none;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: left;
+    padding: 10px;
+    background: rgba(0,0,0,0.6);
+    text-shadow: none;
 }
-
 #myCarousel .list-group {
-	position:absolute;
-	top:0;
-	right:0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 0;
 }
 #myCarousel .list-group-item {
-	border-radius:0px;
-	cursor:pointer;
-    color: #000;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+    color: #FFF;
+    background-color: #4f4b43;
 }
 #myCarousel .list-group .active {
-	background-color:#eee;
+    background-color: transparent;
+    background: url("/static/img/arrow-left.svg") no-repeat center left;
+    background-repeat: none;
+    color: #000;
+    margin-left:-39px;
+    padding-left: 54px;
 }
-
 @media (min-width: 992px) {
-	#myCarousel {padding-right:33.3333%;}
-	#myCarousel .carousel-controls {display:none;}
+    #myCarousel {
+        padding-right: 33.3333%;
+    }
+    #myCarousel .carousel-controls {
+        display: none;
+    }
 }
 @media (max-width: 991px) {
-	.carousel-caption p,
-	#myCarousel .list-group {display:none;}
+    .carousel-caption p,
+    #myCarousel .list-group {
+        display: none;
+    }
 }
-
-
-
 ////////////////////////////////////////////////////////////////////////////////
 // news
 .more {

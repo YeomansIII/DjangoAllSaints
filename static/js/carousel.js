@@ -1,6 +1,7 @@
 $(document).ready(function() {
-
+/*
     var clickEvent = false;
+    var id;
     $('#myCarousel').carousel({
         interval: 4000
     }).on('click', '.list-group li', function() {
@@ -9,16 +10,21 @@ $(document).ready(function() {
         $(this).addClass('active');
     }).on('slid.bs.carousel', function(e) {
         if (!clickEvent) {
-            var count = $('.list-group').children().length - 1;
+            var count = $('.list-group-item').length-1;
             var current = $('.list-group li.active');
-            current.removeClass('active').next().addClass('active');
-            var id = parseInt(current.data('slide-to'));
+            var next=current.next();
+            id = parseInt(current.data('slide-to'));
+            current.removeClass('active')
+            console.log("count: "+count+"  id:: "+id+"  array: "+$('.list-group-item').get(1));
             if (count == id) {
-                $('.list-group li').first().addClass('active');
+                $('.list-group-item').first().addClass('active');
+            } else {
+                id++;
+                next.addClass('active');
             }
         }
         clickEvent = false;
-    });
+    });*/
 })
 
 function canvas_size() {
