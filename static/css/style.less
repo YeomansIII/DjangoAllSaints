@@ -9,7 +9,6 @@
 @import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
 a {
-    color: @brand-color;
     text-decoration: none;
     &:hover {
         color: @text-color;
@@ -28,17 +27,14 @@ body {
     padding-right: 15px;
     padding-left: 15px;
     color: #FFF !important;
-    background-color: #82836f;
+    background-color: #4f4b43;
     border: none;
-}
-.active {
-    background-color: #4fb443;
 }
 .navbar-inverse {
     color: #FFF !important;
 }
 .navbar-nav>li:hover {
-    background-color: #4f4b43;
+    background-color: #82836f;
 }
 .navbar-nav>li>a {
     color: #fff !important;
@@ -82,7 +78,7 @@ body {
 -----------------------------------------------------*/
 .featurette {
     img {
-        border-radius: 5px;
+        border-radius: 2px;
     }
 }
 #home-background {
@@ -92,9 +88,27 @@ body {
     width: 100%;
     background-image: url("../img/canvas-cut.jpg");
     background-size: cover;
+    box-shadow: 0 0 30px #000;
+}
+@media (max-width: @screen-sm-max) {
+
+}
+#quicklinks {
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 //CAROUSEL
 ////////////////////////////////////////////////////////////////////////////////
+#myCarousel {
+    margin-bottom: 40px;
+}
+#myCarousel a{
+    color: #CCC;
+    font-weight: bold;
+    &:hover {
+        color: #333;
+    }
+}
 #myCarousel .carousel-caption {
     left:0;
 	right:0;
@@ -113,6 +127,7 @@ body {
 #myCarousel .list-group-item {
 	border-radius:0px;
 	cursor:pointer;
+    color: #000;
 }
 #myCarousel .list-group .active {
 	background-color:#eee;
