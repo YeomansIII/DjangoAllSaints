@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 
     # News
     url(r'^news/', include('blanc_basic_news.urls', namespace='blanc_basic_news')),
+    url(r'^newstext/(?P<year1>\d{4})/(?P<month1>\d{2})/(?P<day1>\d{2})/(?P<slug1>.+)$', 'django_project.views.NewsText', name='news-text'),
 
     # Events
     url(r'^events/', include('blanc_basic_events.urls', namespace='blanc_basic_events')),

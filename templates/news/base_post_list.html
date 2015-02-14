@@ -2,58 +2,57 @@
 <!--<script src="/static/js/my.js"></script>-->
 <script src="/static/js/freewall.js"></script>
 <div class="container" style="margin-bottom: 100px;">
-    <div class=row>
-        <div class="col-md-3">
-            <div class="news-side" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
-                <h3>Categories</h3>
-                {% get_news_categories as news_categories %} {% for cat in news_categories %}
-                <a href="/news/category/{{cat.slug}}">
-                    <h4>{{cat.title}}</h4>
-                </A>
-                {% endfor %}
-                <h3>Archive Dates</h3>
-                {% get_news_months as news_months %} {% for month in news_months reversed %}
-                <a href="/news/{{month|date:'Y'}}/{{month|date:'m'}}">
-                    <h4>{{month|date:"M Y"}}</h4>
-                </a>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="col-md-9">
-            {% for i in object_list %}
-            <div class="box row">
-                {% if i.image %}
-                <div class="no-padding col-md-3">
-                    {% thumbnail i.image.file 250x250 crop as thumb %}
-                    <a href="{{ i.get_absolute_url }}">
-                        <img src="{{ thumb.url }}" alt="{{ i }}" class="" />
-                    </a>
-                </div>
-                <div class="info info-image col-md-9">
-                    {% else %}
-                <div class="info info-noimage col-md-12">
-                    {% endif %}
-
-                    <h2 class=""><a href="{{ i.get_absolute_url }}">{{ i }}</a>
-                    </h2>
-                    <h6 class="">{{ i.date|date:"j M Y" }} &bull; <a href="{{ i.category.get_absolute_url }}">{{ i.category }}</a>
-                    </h6>
-                    <hr> {% if i.teaser %} {{ i.teaser|linebreaks }} {% else %}
-                    <p> {{ i.content|safe }} </p>{% endif %}
-                    <a class="btn-xs btn-info" href="{{ i.get_absolute_url }}">Read More</a>
-                </div>
-            </div>
-            {% endfor %} {% if is_paginated %}
-            <nav class="pagination">
-                {% if page_obj.has_previous %}
-                <a class="prev" href="?page={{ page_obj.previous_page_number }}">Prev</a> {% endif %} {% if page_obj.has_next %}
-                <a class="next" href="?page={{ page_obj.next_page_number }}">Next</a> {% endif %}
-            </nav>
-            {% endif %}
-        </div>
+  <div class=row>
+    <div class="col-md-3">
+      <div class="news-side" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+        <h3>Categories</h3> {% get_news_categories as news_categories %} {% for cat in news_categories %}
+        <a href="/news/category/{{cat.slug}}">
+          <h4>{{cat.title}}</h4>
+        </A>
+        {% endfor %}
+        <h3>Archive Dates</h3> {% get_news_months as news_months %} {% for month in news_months reversed %}
+        <a href="/news/{{month|date:'Y'}}/{{month|date:'m'}}">
+          <h4>{{month|date:"M Y"}}</h4>
+        </a>
+        {% endfor %}
+      </div>
     </div>
-</div>
+
+    <div class="col-md-9">
+      {% for i in object_list %}
+      <div class="box row">
+        {% if i.image %}
+        <div class="no-padding col-md-3">
+          {% thumbnail i.image.file 250x250 crop as thumb %}
+          <a href="{{ i.get_absolute_url }}">
+            <img src="{{ thumb.url }}" alt="{{ i }}" class="" />
+          </a>
+        </div>
+        <div class="info info-image col-md-9">
+          {% else %}
+          <div class="info info-noimage col-md-12">
+            {% endif %}
+
+            <h2 class=""><a href="{{ i.get_absolute_url }}">{{ i }}</a>
+                    </h2>
+            <h6 class="">{{ i.date|date:"j M Y" }} &bull; <a href="{{ i.category.get_absolute_url }}">{{ i.category }}</a>
+                    </h6>
+            <hr>
+            <div class="news-content">{% if i.teaser %} {{ i.teaser|linebreaks }} {% else %}
+              <p> {{ i.content|safe }} </p>{% endif %}</div>
+            <a class="btn-xs btn-info" href="{{ i.get_absolute_url }}" onclick="getArticleText('{{ i.get_absolute_url }}',{{ forloop.counter0 }})">Read More</a>
+          </div>
+        </div>
+        {% endfor %} {% if is_paginated %}
+        <nav class="pagination">
+          {% if page_obj.has_previous %}
+          <a class="prev" href="?page={{ page_obj.previous_page_number }}">Prev</a> {% endif %} {% if page_obj.has_next %}
+          <a class="next" href="?page={{ page_obj.next_page_number }}">Next</a> {% endif %}
+        </nav>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 
 
-{% endblock content %}
+  {% endblock content %}
