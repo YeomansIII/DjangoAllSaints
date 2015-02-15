@@ -16,61 +16,62 @@
 
             <script>
                 $(document).ready(function() {
-                            var recurrArr = [];
-                            {%for i in object_list %}
-                                var m = moment(),
-                                    n = m.startOf('month').day("{{i.get_day_of_the_week_display}}");
-                                    //    y = d.getFullYear();
-                                    console.log("Month: " + n + "   Year: ");
-                                for(i=0; i<=9; i++) {
-                                    var obj = {title:'{{i}}', start:''+n.format('YYYY-MM-DD')};
-                                    console.log(obj);
-                                    recurrArr.push(obj);
-                                    n.day(n.weekday()+7);
-                                }
+                    var recurrArr = [];
+                    {% for i in object_list %}
+                    var m = moment(),
+                        n = m.startOf('month').day("{{i.get_day_of_the_week_display}}");
+                    //    y = d.getFullYear();
+                    console.log("Month: " + n + "   Year: ");
+                    for (i = 0; i <= 9; i++) {
+                        var obj = {
+                            title: '{{i}}',
+                            start: '' + n.format('YYYY-MM-DD'),
+                            id: {{forloop.counter0}}
+                        };
+                        console.log(obj);
+                        recurrArr.push(obj);
+                        n.day(n.weekday() + 7);
+                    }
 
-                            {% endfor %}
-                            console.log(recurrArr);
+                    {% endfor %}
 
-                            $('#calendar').fullCalendar({
-                                    contentHeight: 'auto',
-                                    eventSources: [
+                    $('#calendar').fullCalendar({
+                        contentHeight: 'auto',
+                        eventSources: [
 
-                                        // your event source
-                                        {
-                                            events: [
-                                                //
-                                                {%get_upcoming_events as events_list %} {%for i in events_list %}
-                                                //
-                                                {
-                                                    title: '{{ i }}',
-                                                    start: '{{i.start|date:" c "|slice:":11"}}'
-                                                },
-                                                //
-                                                {% endfor %}
-                                                //
-                                            ],
-                                            color: 'blue',     // an option!
-                                            textColor: 'white' // an option!
-                                        }, {
-                                            events: recurrArr,
-                                            color: '#000',     // an option!
-                                            textColor: 'white' // an option!
-                                        }
-                                    ]
-                                    });
-                            });
+                            // your event source
+                            {
+                                events: [
+                                    //
+                                    {% get_upcoming_events as events_list %} {%for i in events_list %}
+                                    //
+                                    {
+                                        title: '{{ i }}',
+                                        start: '{{i.start|date:" c "|slice:":11"}}'
+                                    },
+                                    //
+                                    {% endfor %}
+                                    //
+                                ],
+                                color: 'blue', // an option!
+                                textColor: 'white' // an option!
+                            }, {
+                                events: recurrArr,
+                                color: '#000', // an option!
+                                textColor: 'white' // an option!
+                            }
+                        ],
+                        eventClick: function(calEvent, jsEvent, view) {
+                            $('.event-list li').hide('fast');
+                            $('#event-id-'+calEvent.id).slideToggle();
+                        }
+                    });
+                });
             </script>
 
-
-
-
-
-            <!--<h1 class="events-heading">Weekly Events</h1>
-            <hr>
             <ul class="event-list">
                 {% for i in object_list %}
-                <li>
+                <li id="event-id-{{forloop.counter0}}">
                     <time datetime="{{ i.time|date:" c " }}">
                         <span class="day-of-week">{{ i.get_day_of_the_week_display|slice:"0:3" }}</span>
                     </time>
@@ -101,7 +102,7 @@
                     </div>
                 </li>
                 {% endfor %}
-            </ul>-->
+            </ul>
         </div>
 
         <div class="col-lg-6 col-md-12">
