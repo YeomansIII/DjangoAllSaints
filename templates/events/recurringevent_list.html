@@ -62,7 +62,7 @@
                             }
                         ],
                         eventClick: function(calEvent, jsEvent, view) {
-                            $('.event-list li').hide('fast');
+                            $('.recurr-li').hide('fast');
                             $('#event-id-'+calEvent.id).slideToggle();
                         }
                     });
@@ -71,7 +71,7 @@
 
             <ul class="event-list">
                 {% for i in object_list %}
-                <li id="event-id-{{forloop.counter0}}">
+                <li id="event-id-{{forloop.counter0}}" class="recurr-li">
                     <time datetime="{{ i.time|date:" c " }}">
                         <span class="day-of-week">{{ i.get_day_of_the_week_display|slice:"0:3" }}</span>
                     </time>
