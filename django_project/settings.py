@@ -92,7 +92,7 @@ CACHES = {
 
 LANGUAGE_CODE = 'en'
 
-TIME_ZONE = 'Europe/London'
+TIME_ZONE = 'America/New York'
 
 USE_I18N = False
 
