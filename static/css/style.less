@@ -216,7 +216,7 @@ body {
     margin-right: 0;
     margin-left: 0;
     max-height: auto;
-/*    -webkit-transition: max-height 1s ease;
+    /*    -webkit-transition: max-height 1s ease;
     -moz-transition: max-height 1s ease;
     transition: max-height 1s ease; */
 }
@@ -269,7 +269,12 @@ body {
     margin: 0 0 20px;
 }
 .recurr-li {
-    display:none;
+    display: none;
+}
+@media (min-width: @screen-xs-min) {
+    #recurr-ul {
+        height: 200px;
+    }
 }
 .event-list > li > time {
     display: inline-block;
@@ -398,7 +403,7 @@ body {
         padding: 0;
     }
     .recurr-li {
-        display:none;
+        display: none;
     }
     .event-list > li > time,
     .event-list > li > img {

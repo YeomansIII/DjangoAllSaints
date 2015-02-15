@@ -63,13 +63,16 @@
                         ],
                         eventClick: function(calEvent, jsEvent, view) {
                             $('.recurr-li').hide('fast');
-                            $('#event-id-'+calEvent.id).slideToggle();
+                            $('#event-id-'+calEvent.id).slideDown('fast');
+                        },
+                        dayClick: function(date, jsEvent, view) {
+                            $('.recurr-li').hide('fast');
                         }
                     });
                 });
             </script>
 
-            <ul class="event-list">
+            <ul id="recurr-ul" class="event-list">
                 {% for i in object_list %}
                 <li id="event-id-{{forloop.counter0}}" class="recurr-li">
                     <time datetime="{{ i.time|date:" c " }}">
