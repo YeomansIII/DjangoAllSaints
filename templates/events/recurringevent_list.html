@@ -1,4 +1,4 @@
-{% extends "events/base.html" %} {% load cycle from future %} {% load thumbnail %}
+{% extends "events/base.html" %} {% load cycle from future %} {% load thumbnail events_tags %}
 
 <!---->
 {% block title %}Events - {{ block.super }}{% endblock %}
@@ -6,10 +6,45 @@
 {% block pagetitle %}<a href="{% url 'blanc_basic_events:events-home' %}">Events</a>{% endblock %}
 <!---->
 {% block content %}
+<script src="/static/js/moment.min.js"></script>
+<link href="/static/css/fullcalendar.css" rel="stylesheet">
+<script src="/static/js/fullcalendar.js"></script>
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-12">
-            <h1 class="events-heading">Weekly Events</h1>
+            <div id="calendar"></div>
+
+            <script>
+                $(document).ready(function() {
+                    var m = moment(),
+                        n = m.startOf('month').day("Sunday");
+                    //    y = d.getFullYear();
+                    console.log("Month: "+n+"   Year: ");
+
+
+                    $('#calendar').fullCalendar({
+                        events: [
+                            //
+                            {% get_upcoming_events as events_list %}
+                            {%for i in events_list %}
+                            //
+                            {
+                            title: '{{ i }}',
+                            start: '{{i.start|date:" c "|slice:":11"}}'
+                            },
+                        //
+                        {% endfor %}
+                        //
+                        ]
+                    });
+                });
+            </script>
+
+
+
+
+
+            <!--<h1 class="events-heading">Weekly Events</h1>
             <hr>
             <ul class="event-list">
                 {% for i in object_list %}
@@ -44,7 +79,7 @@
                     </div>
                 </li>
                 {% endfor %}
-            </ul>
+            </ul>-->
         </div>
 
         <div class="col-lg-6 col-md-12">
