@@ -14,5 +14,6 @@ class IndexView(TemplateView):
         return context
 
 def NewsText(request, year1, month1, day1, slug1):
-    post_text = Post.objects.filter(year=year1,month=month1,day=day1,slug=slug1)[0].content
+    print(year1+"  "+month1+"  "+day1+"  "+slug1)
+    post_text = Post.objects.filter(date_url__year=year1,date_url__month=month1,date_url__day=day1,slug=slug1)[0].content
     return HttpResponse(post_text)

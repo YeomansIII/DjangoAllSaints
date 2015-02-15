@@ -128,18 +128,18 @@ body {
     border-radius: 0;
     border: none;
     cursor: pointer;
-    color: #FFF;
+    color: #fff;
     background-color: #4f4b43;
 }
 #myCarousel .list-group-item:hover {
-    background-color: #605D55;
+    background-color: #605d55;
 }
 #myCarousel .list-group .active {
     background-color: transparent;
     background: url("/static/img/arrow-left.svg") no-repeat center left;
     background-repeat: none;
     color: #000;
-    margin-left:-39px;
+    margin-left: -39px;
     padding-left: 54px;
 }
 @media (min-width: 992px) {
@@ -171,6 +171,9 @@ body {
         background: @brand-color;
         color: @alt-color;
     }
+}
+.news-text {
+    //display: none;
 }
 .pagination {
     overflow: hidden;
@@ -212,6 +215,13 @@ body {
     margin-top: 60px;
     margin-right: 0;
     margin-left: 0;
+    max-height: auto;
+/*    -webkit-transition: max-height 1s ease;
+    -moz-transition: max-height 1s ease;
+    transition: max-height 1s ease; */
+}
+.box:hover {
+    max-height: 1000px;
 }
 .box img {
     width: 100%;
