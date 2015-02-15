@@ -16,28 +16,50 @@
 
             <script>
                 $(document).ready(function() {
-                    var m = moment(),
-                        n = m.startOf('month').day("Sunday");
-                    //    y = d.getFullYear();
-                    console.log("Month: "+n+"   Year: ");
+                            var recurrArr = [];
+                            {%for i in object_list %}
+                                var m = moment(),
+                                    n = m.startOf('month').day("{{i.get_day_of_the_week_display}}");
+                                    //    y = d.getFullYear();
+                                    console.log("Month: " + n + "   Year: ");
+                                for(i=0; i<=9; i++) {
+                                    var obj = {title:'{{i}}', start:''+n.format('YYYY-MM-DD')};
+                                    console.log(obj);
+                                    recurrArr.push(obj);
+                                    n.day(n.weekday()+7);
+                                }
 
+                            {% endfor %}
+                            console.log(recurrArr);
 
-                    $('#calendar').fullCalendar({
-                        events: [
-                            //
-                            {% get_upcoming_events as events_list %}
-                            {%for i in events_list %}
-                            //
-                            {
-                            title: '{{ i }}',
-                            start: '{{i.start|date:" c "|slice:":11"}}'
-                            },
-                        //
-                        {% endfor %}
-                        //
-                        ]
-                    });
-                });
+                            $('#calendar').fullCalendar({
+                                    contentHeight: 'auto',
+                                    eventSources: [
+
+                                        // your event source
+                                        {
+                                            events: [
+                                                //
+                                                {%get_upcoming_events as events_list %} {%for i in events_list %}
+                                                //
+                                                {
+                                                    title: '{{ i }}',
+                                                    start: '{{i.start|date:" c "|slice:":11"}}'
+                                                },
+                                                //
+                                                {% endfor %}
+                                                //
+                                            ],
+                                            color: 'blue',     // an option!
+                                            textColor: 'white' // an option!
+                                        }, {
+                                            events: recurrArr,
+                                            color: '#000',     // an option!
+                                            textColor: 'white' // an option!
+                                        }
+                                    ]
+                                    });
+                            });
             </script>
 
 
