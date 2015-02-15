@@ -32,7 +32,7 @@
                     <div class="info info-noimage col-md-12">
                         {% endif %}
 
-                        <h2 class=""><a href="{{ i.get_absolute_url }}">{{ i }}</a>
+                        <h2 class=""><a href="javascript:void" onclick="getArticleText('{{ i.get_absolute_url }}',{{ forloop.counter0 }})">{{ i }}</a>
                         </h2>
                         <h6 class="">{{ i.date|date:"j M Y" }} &bull; <a href="{{ i.category.get_absolute_url }}">{{ i.category }}</a>
                         </h6>
@@ -41,7 +41,7 @@
                             <div class="news-teaser">{% if i.teaser %} {{ i.teaser|linebreaks }} {% else %}
                                 <p> {{ i.content|safe }} </p>{% endif %}
                             </div>
-                            <div class="news-text">Content</div>
+                            <div class="news-text"></div>
                         </div>
                         <a class="btn-xs btn-info read-more" href="javascript:void" onclick="getArticleText('{{ i.get_absolute_url }}',{{ forloop.counter0 }})">Read More</a>
                     </div>
