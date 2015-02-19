@@ -303,16 +303,10 @@ body {
   background-color: #ede176;
   color: #000;
 }
-.special-list-filler {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.special-event-list > li {
   background-color: #c2a84a;
-  z-index: -1;
 }
-.special-list-filler:nth-child(even) {
+.special-event-list > li:nth-child(even) {
   background-color: #ede176;
   color: #000;
 }
@@ -349,6 +343,7 @@ body {
 .event-list > li > .info {
   padding-top: 5px;
   text-align: center;
+  background-color: #fff;
 }
 .event-list > li > .info > .title {
   font-size: 17pt;
@@ -365,6 +360,8 @@ body {
   font-size: 13pt;
   font-weight: 300;
   margin: 0;
+  padding: 10px;
+  text-align: left;
 }
 .event-list > li > .info > ul,
 .event-list > li > .social > ul {
@@ -437,7 +434,7 @@ body {
     height: 120px;
     padding: 0;
   }
-  .special-list-item {
+  .special-event-list > li {
     height: auto !important;
   }
   .recurr-li {
@@ -467,16 +464,17 @@ body {
     position: relative;
     height: 120px;
     text-align: left;
-    padding-right: 40px;
+    padding-right: 80px;
   }
-  .special-list-item > .info {
+  .special-event-list > li > .info {
     height: auto !important;
   }
   .event-list > li > .info > .title,
   .event-list > li > .info > .desc {
     padding: 0 10px;
   }
-  .event-list > li > .info > a > .title {
+  .event-list > li > .info > a > .title,
+  .event-list > li > .info > .desc {
     padding: 0 10px;
   }
   .event-list > li > .info > ul {
@@ -491,16 +489,16 @@ body {
     display: block;
     width: 40px;
   }
-  .special-list-item > .social {
+  .special-event-list > li > .social {
     height: 100% !important;
   }
-  .special-list-item > .social > ul {
+  .special-event-list > li > .social > ul {
     height: 100% !important;
   }
-  .special-list-item > .social > ul > li {
+  .special-event-list > li > .social > ul > li {
     height: 33.3% !important;
   }
-  .special-list-item > .social > ul > li > a {
+  .special-event-list > li > .social > ul > li > a {
     height: 100% !important;
   }
   .event-list > li > .social > ul {

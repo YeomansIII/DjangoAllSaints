@@ -4,10 +4,9 @@
   <a class="ical more" href="webcal://{{ request.get_host }}{% url 'blanc_basic_events:feed' %}">Subscribe to iCal feed</a>
   <hr />
 
-  <ul class="event-list">
+  <ul class="event-list special-event-list">
     {% for i in object_list %}
-    <li class="special-list-item" name="{{ i.slug }}">
-      <div class="special-list-filler"></div>
+    <li name="{{ i.slug }}">
       <time datetime="{{ i.start|date:" c " }}">
         <span class="day">{{ i.start|date:" j " }}</span>
         <span class="month">{{ i.start|date:" M " }}</span>
@@ -20,7 +19,7 @@
         <h2 class="title">{{ i }} - {{ i.start|date:" P " }}</h2>
         <div class="desc">{{ i.description|safe }}</div>
       </div>
-      <div class="social">
+      <!--<div class="social">
         <ul>
           <li class="facebook" style="width:33%;">
             <a href="#facebook">
@@ -38,7 +37,7 @@
             </a>
           </li>
         </ul>
-      </div>
+    </div>-->
     </li>
     {% endfor %}
   </ul>

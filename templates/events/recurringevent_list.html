@@ -125,10 +125,10 @@
             <a href="{% url 'blanc_basic_events:specialevent-list' %}#{{ i.slug }}"><h2 class="title">{{ i }} - {{ i.start|date:" P " }}</h2></a>
             <p class="desc">{{ i.summary|safe }}</p>
           </div>
-          <div class="social">
+          <!--<div class="social">
             <ul>
               <li class="facebook" style="width:33%;">
-                <a href="http://www.facebook.com/share.php?u=allsaints.yeomans.io/events/view/{{ i.slug }}&title={{ i }}">
+                <a href="http://www.facebook.com/share.php?u={{request.get_host}}/events/view/{{ i.slug }}&title={{ i }}">
                   <span class="fa fa-facebook"></span>
                 </a>
               </li>
@@ -143,7 +143,7 @@
                 </a>
               </li>
             </ul>
-          </div>
+        </div>-->
         </li>
         {% empty %}
         <li class="noimage">
