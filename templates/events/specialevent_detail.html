@@ -7,7 +7,7 @@
 {% block pagetitle %}<a href="{% url 'blanc_basic_events:events-home' %}">Events</a>{% endblock %}
 
 {% block content %}
-<div class="event-detail">
+<div class="event-detail container">
     {% if object.image %}
         {% thumbnail object.image.file 461x320 upscale as thumb %}
         <a href="{{ object.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ object }}" /></a>
