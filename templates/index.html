@@ -14,7 +14,7 @@
         <div class="carousel-inner">
             {% for item in carousel %}
             <div class="item {% cycle 'active' '' '' '' ''%}">
-                {% thumbnail item.image_file.file 760x400 crop as thumb %}
+                {% thumbnail item.image_file.file 760x400 crop=",0" upscale as thumb %}
                 <img src="{{ thumb.url }}">
                 {% if item.body %}
                 <div class="carousel-caption">
