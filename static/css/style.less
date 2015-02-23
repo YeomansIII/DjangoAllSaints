@@ -19,7 +19,7 @@ a {
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
-  background-color: #f7f7f7;
+  background: url("/static/img/concrete_seamless.png") repeat;
 
 }
 /* CUSTOMIZE THE NAVBAR
@@ -93,9 +93,13 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background-image: url("../img/canvas-cut.jpg");
-  background-size: cover;
+  background: url("/static/img/retina_wood_@2X.png") repeat;
   box-shadow: 0 0 30px #000;
+}
+@media (max-width: @screen-sm-max) {
+    #home-background {
+        background: url("/static/img/retina_wood.png") repeat;
+    }
 }
 @media (max-width: @screen-sm-max) {
 
@@ -305,7 +309,7 @@ body {
 }
 .special-event-list > li {
   background-color: #c2a84a;
-  
+
 }
 .special-event-list > li:nth-child(even) {
   background-color: #ede176;
