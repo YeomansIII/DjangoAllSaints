@@ -14,7 +14,7 @@ function getArticleText(abs_url, id) {
                     $('.read-more:eq(' + id + ')').html("Read Less");
                 });
         } else {
-            $('#news-content-' + id + ' .news-teaser').hide('fast');
+            $('#news-content-' + id + ' .news-teaser').slideUp('fast');
             $('#news-content-' + id + ' .news-text').slideDown('slow');
             $('.read-more:eq(' + id + ')').html("Read Less");
         }

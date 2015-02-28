@@ -31,6 +31,7 @@ INSTALLED_APPS = (
     'django_admin_bootstrapped.bootstrap3',
     'django_admin_bootstrapped',
     'django.contrib.admin',
+    'request',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -47,6 +48,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'request.middleware.RequestMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,6 +62,14 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'django_project.urls'
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
+
+##ANALYTICS DJANGO-REQUESTS##
+REQUEST_TRAFFIC_MODULES = (
+    'request.traffic.UniqueVisitor',
+    #'request.traffic.UniqueVisit',
+    #'request.traffic.Hit',
+    #'request.traffic.NotAjax',
+)
 
 
 # Database
@@ -113,6 +123,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'theme/static'),
+    os.path.join(BASE_DIR, 'request/static'),
 )
 
 
@@ -130,6 +141,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
     os.path.join(BASE_DIR, 'django_project/templates'),
+    os.path.join(BASE_DIR, 'request/templates'),
     os.path.join(BASE_DIR, 'theme/templates'),
 )
 

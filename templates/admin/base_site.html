@@ -1,0 +1,9 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('RoomList Administration') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name" style="font-size:15pt; margin:15px;"><a href="{% url 'admin:index' %}" style="font-size:15pt;padding:0;margin:0;">All Saints Administration</a> -- <a href="/admin/request/request/overview/" style="font-size:15pt;padding:0;margin:0;">Analytics</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
