@@ -1,4 +1,4 @@
-{% extends "events/base.html" %} {% load thumbnail %} {% block title %}Special Events - {{ block.super }}{% endblock %} {% block pagetitle %}<a href="{% url 'blanc_basic_events:events-home' %}">Special Events</a>{% endblock %} {% block content %}
+{% extends "events/base.html" %} {% load thumbnail %} {% block title %}AllSaintsNCC | Special Events{% endblock %} {% block pagetitle %}<a href="{% url 'blanc_basic_events:events-home' %}">Special Events</a>{% endblock %} {% block content %}
 <div class="container">
   <h1>Events</h1>
   <a class="ical more" href="webcal://{{ request.get_host }}{% url 'blanc_basic_events:feed' %}">Subscribe to iCal feed</a>

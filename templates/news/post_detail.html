@@ -1,4 +1,4 @@
-{% extends "news/base.html" %} {% load thumbnail %} {% block title %}{{ object.title }} - News - {{ block.super }}{% endblock %} {% block pagetitle %}<a href="{% url 'blanc_basic_news:post-list' %}">News</a>{% endblock %} {% block content %}
+{% extends "news/base.html" %} {% load thumbnail %} {% block title %}AllSaintsNCC | News{% endblock %} {% block pagetitle %}<a href="{% url 'blanc_basic_news:post-list' %}">News</a>{% endblock %} {% block content %}
 <div class="container">
   <div class="jumbotron" style="min-height:560px">
     <div class="post detail {% if object.image %}image{% endif %}">
