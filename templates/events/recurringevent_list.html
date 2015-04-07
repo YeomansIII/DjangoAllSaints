@@ -34,6 +34,8 @@
 
           {% endfor %}
 
+            var visibleId = -1;
+
           $('#calendar').fullCalendar({
             contentHeight: 'auto',
             eventSources: [
@@ -46,26 +48,35 @@
                   //
                   {
                     title: '{{ i }}',
-                    start: '{{i.start|date:" c "|slice:":11"}}'
+                    start: '{{i.start|date:" c "|slice:":11"}}',
+                    recurr: true,
                   },
                   //
                   {% endfor %}
                   //
                 ],
-                color: 'blue', // an option!
-                textColor: 'white' // an option!
+                color: '#ede176', // an option!
+                textColor: 'black' // an option!
               }, {
                 events: recurrArr,
-                color: '#000', // an option!
+                color: '#c2a84a', // an option!
                 textColor: 'white' // an option!
               }
             ],
             eventClick: function(calEvent, jsEvent, view) {
-              $('.recurr-li').hide('fast');
-              $('#event-id-' + calEvent.id).slideDown('fast');
+              if(calEvent.recurr) {
+                  location.href = "/events/list/"
+              } else if(calEvent.id != visibleId) {
+                  $('#cal-click-tip').hide();
+                  $('.recurr-li').hide('fast');
+                  $('#event-id-' + calEvent.id).slideDown('fast');
+                  visibleId = calEvent.id;
+              }
             },
             dayClick: function(date, jsEvent, view) {
               $('.recurr-li').hide('fast');
+              $('#cal-click-tip').show('fast');
+              visibleId = -1;
             }
           });
         });
@@ -104,6 +115,7 @@
         </div>-->
         </li>
         {% endfor %}
+        <li id="cal-click-tip">Click on an event in the calander to see more about it</li>
       </ul>
     </div>
 
