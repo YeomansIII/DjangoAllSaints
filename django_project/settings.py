@@ -16,13 +16,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Production / development switches
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
 
-DEBUG = True
-
-TEMPLATE_DEBUG = DEBUG
-
-ALLOWED_HOSTS = ['*']
-
-SECRET_KEY = 'all=ixafr!gseb)^m95a68ej-i71+(p^kp8hw8v)=j@x5lx4n+s45saints'
+import config
+DEBUG = config.DEBUG
+TEMPLATE_DEBUG = config.TEMPLATE_DEBUG
+ALLOWED_HOSTS = config.ALLOWED_HOSTS
 
 
 # Application definition
@@ -72,17 +69,20 @@ REQUEST_TRAFFIC_MODULES = (
 )
 
 
+import secret
 # Database
-# https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
+# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+
+SECRET_KEY = secret.SECRET_KEY
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'allsaints',
-        'USER': 'django',
-        'PASSWORD': 'django',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': secret.DB_NAME,
+        'USER': secret.DB_USER,
+        'PASSWORD': secret.DB_PASSWORD,
+        'HOST': secret.DB_HOST,
+        'PORT': secret.DB_PORT,
     },
 }
 
