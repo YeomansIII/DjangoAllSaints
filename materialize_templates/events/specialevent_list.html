@@ -1,0 +1,53 @@
+{% extends "events/base.html" %} {% load thumbnail %} {% block title %}AllSaintsNCC | Special Events{% endblock %} {% block pagetitle %}<a href="{% url 'blanc_basic_events:events-home' %}">Special Events</a>{% endblock %} {% block content %}
+<div class="container">
+  <h1>Events</h1>
+  <a class="ical more" href="webcal://{{ request.get_host }}{% url 'blanc_basic_events:feed' %}">Subscribe to iCal feed</a>
+  <hr />
+
+  <ul class="event-list special-event-list">
+    {% for i in object_list %}
+    <li name="{{ i.slug }}">
+      <time datetime="{{ i.start|date:" c " }}">
+        <span class="day">{{ i.start|date:" j " }}</span>
+        <span class="month">{{ i.start|date:" M " }}</span>
+        <span class="year">{{ i.start|date:" Y " }}</span>
+        <span class="time">{{ i.start|date:" P " }}</span>
+      </time>
+      {% if i.image %} {% thumbnail i.image.file 150x150 crop as thumb %}
+      <img src="{{ thumb.url }}" alt="{{ i }}" /> {% endif %}
+      <div class="info">
+        <h2 class="title">{{ i }} - {{ i.start|date:" P " }}</h2>
+        <div class="desc">{{ i.description|safe }}</div>
+      </div>
+      <!--<div class="social">
+        <ul>
+          <li class="facebook" style="width:33%;">
+            <a href="#facebook">
+              <span class="fa fa-facebook"></span>
+            </a>
+          </li>
+          <li class="twitter" style="width:34%;">
+            <a href="#twitter">
+              <span class="fa fa-twitter"></span>
+            </a>
+          </li>
+          <li class="google-plus" style="width:33%;">
+            <a href="#google-plus">
+              <span class="fa fa-google-plus"></span>
+            </a>
+          </li>
+        </ul>
+    </div>-->
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% if is_paginated %}
+  <div class="pagination">
+    {% if page_obj.has_previous %}
+    <a class="prev" href="?page={{ page_obj.previous_page_number }}">Next &gt;</a> {% endif %} {% if page_obj.has_next %}
+    <a class="next" href="?page={{ page_obj.next_page_number }}">&lt; Prev</a> {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endblock content %}

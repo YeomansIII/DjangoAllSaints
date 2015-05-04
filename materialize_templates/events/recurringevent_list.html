@@ -1,0 +1,172 @@
+{% extends "events/base.html" %} {% load cycle from future %} {% load thumbnail events_tags %}
+
+<!---->
+{% block title %}AllSaintsNCC | Events{% endblock %}
+<!---->
+{% block pagetitle %}<a href="{% url 'blanc_basic_events:events-home' %}">Events</a>{% endblock %}
+<!---->
+{% block content %}
+<script src="/static/js/moment.min.js"></script>
+<link href="/static/css/fullcalendar.css" rel="stylesheet">
+<script src="/static/js/fullcalendar.js"></script>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-12">
+      <div id="calendar"></div>
+
+      <script>
+        $(document).ready(function() {
+          var recurrArr = []; {% for i in object_list %}
+          var m = moment(),
+            n = m.startOf('month').day("{{i.get_day_of_the_week_display}}");
+          //    y = d.getFullYear();
+          console.log("Month: " + n + "   Year: ");
+          for (i = 0; i <= 9; i++) {
+            var obj = {
+              title: '{{i}}',
+              start: '' + n.format('YYYY-MM-DD'),
+              id: {{forloop.counter0}}
+            };
+            console.log(obj);
+            recurrArr.push(obj);
+            n.day(n.weekday() + 7);
+          }
+
+          {% endfor %}
+
+            var visibleId = -1;
+
+          $('#calendar').fullCalendar({
+            contentHeight: 'auto',
+            eventSources: [
+
+              // your event source
+              {
+                events: [
+                  //
+                  {% get_upcoming_events as events_list %} {% for i in events_list %}
+                  //
+                  {
+                    title: '{{ i }}',
+                    start: '{{i.start|date:" c "|slice:":11"}}',
+                    recurr: true,
+                  },
+                  //
+                  {% endfor %}
+                  //
+                ],
+                color: '#ede176', // an option!
+                textColor: 'black' // an option!
+              }, {
+                events: recurrArr,
+                color: '#c2a84a', // an option!
+                textColor: 'white' // an option!
+              }
+            ],
+            eventClick: function(calEvent, jsEvent, view) {
+              if(calEvent.recurr) {
+                  location.href = "/events/list/"
+              } else if(calEvent.id != visibleId) {
+                  $('#cal-click-tip').hide();
+                  $('.recurr-li').hide('fast');
+                  $('#event-id-' + calEvent.id).slideDown('fast');
+                  visibleId = calEvent.id;
+              }
+            },
+            dayClick: function(date, jsEvent, view) {
+              $('.recurr-li').hide('fast');
+              $('#cal-click-tip').show('fast');
+              visibleId = -1;
+            }
+          });
+        });
+      </script>
+
+      <ul id="recurr-ul" class="event-list">
+        {% for i in object_list %}
+        <li id="event-id-{{forloop.counter0}}" class="recurr-li">
+          <time datetime="{{ i.time|date:" c " }}">
+            <span class="day-of-week">{{ i.get_day_of_the_week_display|slice:"0:3" }}</span>
+          </time>
+          {% if i.image %} {% thumbnail i.image.file 150x150 crop as thumb %}
+          <img src="{{ thumb.url }}" alt="{{ i }}" /> {% endif %}
+          <div class="info">
+            <h2 class="title">{{ i }}</h2>
+            <p class="desc">{{ i.description|safe }}</p>
+          </div>
+          <!--<div class="social">
+            <ul>
+              <li class="facebook" style="width:33%;">
+                <a href="#facebook">
+                  <span class="fa fa-facebook"></span>
+                </a>
+              </li>
+              <li class="twitter" style="width:34%;">
+                <a href="#twitter">
+                  <span class="fa fa-twitter"></span>
+                </a>
+              </li>
+              <li class="google-plus" style="width:33%;">
+                <a href="#google-plus">
+                  <span class="fa fa-google-plus"></span>
+                </a>
+              </li>
+            </ul>
+        </div>-->
+        </li>
+        {% endfor %}
+        <li id="cal-click-tip">Click on an event in the calander to see more about it</li>
+      </ul>
+    </div>
+
+    <div class="col-lg-6 col-md-12">
+      <h1 class="events-heading">Special Events</h1>
+      <hr>
+      <ul class="event-list">
+        {% for i in view.special_events_this_week %}
+        <li>
+          <time datetime="{{ i.start|date:" c " }}">
+            <span class="day">{{ i.start|date:" j " }}</span>
+            <span class="month">{{ i.start|date:" M " }}</span>
+            <span class="year">{{ i.start|date:" Y " }}</span>
+            <span class="time">{{ i.start|date:" P " }}</span>
+          </time>
+          {% if i.image %} {% thumbnail i.image.file 150x150 crop as thumb %}
+          <img src="{{ thumb.url }}" alt="{{ i }}" /> {% endif %}
+          <div class="info">
+            <a href="{% url 'blanc_basic_events:specialevent-list' %}#{{ i.slug }}"><h2 class="title">{{ i }} - {{ i.start|date:" P " }}</h2></a>
+            <p class="desc">{{ i.summary|safe }}</p>
+          </div>
+          <!--<div class="social">
+            <ul>
+              <li class="facebook" style="width:33%;">
+                <a href="http://www.facebook.com/share.php?u={{request.get_host}}/events/view/{{ i.slug }}&title={{ i }}">
+                  <span class="fa fa-facebook"></span>
+                </a>
+              </li>
+              <li class="twitter" style="width:34%;">
+                <a href="#twitter">
+                  <span class="fa fa-twitter"></span>
+                </a>
+              </li>
+              <li class="google-plus" style="width:33%;">
+                <a href="#google-plus">
+                  <span class="fa fa-google-plus"></span>
+                </a>
+              </li>
+            </ul>
+        </div>-->
+        </li>
+        {% empty %}
+        <li class="noimage">
+          <p>Sorry, there are no special events this week.</p>
+        </li>
+        {% endfor %}
+      </ul>
+
+      {% with upcoming_count=view.upcoming_special_events.count %} {% if upcoming_count %}
+      <a class="more" href="{% url 'blanc_basic_events:specialevent-list' %}">View {{ upcoming_count }} upcoming event{{ upcoming_count|pluralize }}</a> {% endif %} {% endwith %}
+    </div>
+  </div>
+</div>
+{% endblock content %}
