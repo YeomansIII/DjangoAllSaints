@@ -36,7 +36,7 @@ class Featurette(models.Model):
     heading1 = models.CharField(max_length=50)
     heading_link = models.CharField(max_length=300, blank=True)
     heading2 = models.CharField(max_length=50, blank=True)
-    body = models.TextField(max_length=150)
+    body = models.TextField(max_length=2000)
     button_text = models.CharField(max_length=20, blank=True, default=u'View details »')
     link = models.CharField(max_length=300, blank=True)
 

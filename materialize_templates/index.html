@@ -90,59 +90,94 @@
 </div>-->
 <!-- /.carousel -->
 
+<div class="slider">
+  <ul class="slides">
+    <li>
+      <img src="http://lorempixel.com/580/250/nature/1">
+      <!-- random image -->
+      <div class="caption center-align">
+        <h3>This is our big Tagline!</h3>
+        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+      </div>
+    </li>
+    <li>
+      <img src="http://lorempixel.com/580/250/nature/2">
+      <!-- random image -->
+      <div class="caption left-align">
+        <h3>Left Aligned Caption</h3>
+        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+      </div>
+    </li>
+    <li>
+      <img src="http://lorempixel.com/580/250/nature/3">
+      <!-- random image -->
+      <div class="caption right-align">
+        <h3>Right Aligned Caption</h3>
+        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+      </div>
+    </li>
+    <li>
+      <img src="http://lorempixel.com/580/250/nature/4">
+      <!-- random image -->
+      <div class="caption center-align">
+        <h3>This is our big Tagline!</h3>
+        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+      </div>
+    </li>
+  </ul>
+</div>
+
 
 <!-- Marketing messaging and featurettes
     ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
 
-<div class="container marketing">
+<div class="container">
 
-    <!-- Three columns of text below the carousel -->
-    <div id="quicklinks" class="row">
-        {% for item in quicklinks %}
-        <div class="col l4 hide-on-small-only center-align">
-            <img class="img-circle" src="/media/{{ item.image_file.file }}" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-            <h2>{{ item.heading }}</h2>
-            <p>{{ item.body }}</p>
-            <p><a class="btn btn-default" href="{{ item.link }}" role="button">{{ item.button_text }}</a>
-            </p>
-        </div>
-        {% endfor %} {% for item in quicklinks %}
-        <div class="col s12 hide-on-med-and-up center-align">
-            <!--<img class="img-circle" src="/media/{{ item.image_file.file }}" alt="Generic placeholder image" style="width: 140px; height: 140px;">-->
-            <h2>{{ item.heading }}</h2>
-            <p>{{ item.body|safe }}</p>
-            <p><a class="btn btn-default" href="{{ item.link }}" role="button">{{ item.button_text }}</a>
-            </p>
-        </div>
-        {% endfor %}
-
+  <!-- Three columns of text below the carousel -->
+  <div id="quicklinks" class="row">
+    {% for item in quicklinks %}
+    <div class="col l4 hide-on-small-only center-align">
+      <img class="circle responsive-img" src="/media/{{ item.image_file.file }}" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+      <h3>{{ item.heading }}</h3>
+      <p>{{ item.body|safe }}</p>
+      <p><a class="btn btn-default" href="{{ item.link }}" role="button">{{ item.button_text }}</a>
+      </p>
     </div>
-    <!-- /.row -->
-
-
-    <!-- START THE FEATURETTES -->
-
-    {% for item in featurettes %}
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">{{ item.heading1 }} {% if item.heading2 %}
-                <br>
-                <span class="text-muted">{{ item.heading2 }}</span>{% endif %}
-            </h2>
-            <p class="lead">{{ item.body|safe }}</p>
-            {% if item.button_text and item.link %}<a class="btn" href="{{ item.link }}">{{ item.button_text }}</a>{% endif %}
-        </div>
-        <div class="col-md-5">
-            {% thumbnail item.image_file.file 500x500 upscale as thumb %}
-            <img class="featurette-image img-responsive" src="{{ thumb.url }}" alt="Generic placeholder image">
-        </div>
+    {% endfor %} {% for item in quicklinks %}
+    <div class="col s12 hide-on-med-and-up center-align">
+      <!--<img class="img-circle" src="/media/{{ item.image_file.file }}" alt="Generic placeholder image" style="width: 140px; height: 140px;">-->
+      <h3>{{ item.heading }}</h3>
+      <p>{{ item.body|safe }}</p>
+      <p><a class="btn btn-default" href="{{ item.link }}" role="button">{{ item.button_text }}</a>
+      </p>
     </div>
     {% endfor %}
 
-    <!-- /END THE FEATURETTES -->
+  </div>
+  <!-- /.row -->
+
+
+  <!-- START THE FEATURETTES -->
+
+  {% for item in featurettes %}
+  <div class="card">
+    <div class="card-image">
+      {% thumbnail item.image_file.file 500x500 upscale as thumb %}
+      <img src="/media/{{ item.image_file.file }}">
+      <span class="card-title">{{ item.heading1 }}</span>
+    </div>
+    <div class="card-content">
+      {% if item.heading2 %}
+      <br>
+      <span class="text-muted">{{ item.heading2 }}</span>{% endif %}
+      <p class="lead">{{ item.body|safe }}</p>
+      {% if item.button_text and item.link %}<a class="btn" href="{{ item.link }}">{{ item.button_text }}</a>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- /END THE FEATURETTES -->
 
 </div>
 

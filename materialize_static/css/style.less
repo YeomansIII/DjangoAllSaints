@@ -1,11 +1,12 @@
 //out:style.css, compress:true;
-/////http://design-seeds.com/home/entry/sweet-flora1
-@brand-color: #705ab8;
-@text-color: #222;
+/////http://www.google.com/design/spec/style/color.html#color-color-palette
+@brand-color: #F57C00;
+@text-color: #EFEBE9;
+@button-color: #448aff;
 @alt-color: white;
 @width: 100%;
 @import url(http://fonts.googleapis.com/css?family=Yellowtail);
-@import url(bootstrap/variables.less);
+//@import url(bootstrap/variables.less);
 @import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
 a {
@@ -16,24 +17,42 @@ a {
     }
 }
 body {
-    padding-bottom: 40px;
     color: #5a5a5a;
-    background: url("/static/img/concrete_seamless.png") repeat;
+    background: url("/static/img/concrete_seamless.png") top left repeat;
+    background-attachment:fixed;
 }
 #map-canvas {
     width: 100%;
     height: 400px;
     margin-top: 80px;
 }
+.container {
+  padding: 0;
+}
+.btn {
+  background-color: @button-color;
+}
+.btn:hover {
+  background-color: #82b1ff;
+}
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 /* Flip around the padding for proper display in narrow viewports */
-.navbar-wrapper .navbar {
-    padding-right: 15px;
-    padding-left: 15px;
-    color: #fff !important;
-    background-color: #4f4b43;
+.nav-wrapper {
+    color: @text-color !important;
     border: none;
+}
+.brand-logo {
+}
+#nav-logo-desktop {
+  margin-left: 25px;
+}
+#nav-logo-mobile {
+  width: 100%;
+  text-align: center;
+}
+#nav-buttons {
+  margin-right: 25px;
 }
 .navbar-inverse {
     color: #fff !important;
@@ -94,14 +113,11 @@ body {
     background: url("/static/img/retina_wood_@2X.png") repeat;
     box-shadow: 0 0 30px #000;
 }
-@media (max-width: @screen-sm-max) {
-    #home-background {
-        background: url("/static/img/retina_wood.png") repeat;
-    }
-}
-@media (max-width: @screen-sm-max) {
-
-}
+//@media (max-width: @screen-sm-max) {
+//    #home-background {
+//        background: url("/static/img/retina_wood.png") repeat;
+//    }
+//}
 #quicklinks {
     padding-top: 80px;
     padding-bottom: 80px;
@@ -167,6 +183,34 @@ body {
 }
 ////////////////////////////////////////////////////////////////////////////////
 // news
+.collapsible-header-news {
+  height: auto;
+  line-height: 1.5rem;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+.collapsible-header-title {
+  font-weight: bold;
+}
+.collapsible-header-extra {
+  padding-top: 10px;
+  line-height: 1rem;
+}
+.collapsible-body img {
+  width: 100%;
+  height: auto;
+}
+.collapsible-body-content {
+  padding: 1rem;
+  list-style-type: circle;
+}
+.collapsible-body-content ul {
+  list-style-type: circle;
+  padding: 2rem;
+}
+.collapsible-body-content ul li{
+  list-style-type: circle;
+}
 .more {
     display: block;
     float: right;
@@ -201,18 +245,18 @@ body {
 .affix-top {
     margin-top: 30px;
 }
-@media (max-width: @screen-sm-max) {
-    .affix-top {
-        margin-top: 0;
-    }
-    .affix {
-        position: relative;
-    }
-    .news-side {
-        text-align: center;
-        padding-bottom: 20px;
-    }
-}
+//@media (max-width: @screen-sm-max) {
+//    .affix-top {
+//        margin-top: 0;
+//    }
+//    .affix {
+//        position: relative;
+//    }
+//    .news-side {
+//        text-align: center;
+//        padding-bottom: 20px;
+//    }
+//}
 .affix-bottom {
 
 }
@@ -272,11 +316,11 @@ body {
 .recurr-li {
     display: none;
 }
-@media (min-width: @screen-xs-min) {
-    #recurr-ul {
-        height: 200px;
-    }
-}
+//@media (min-width: @screen-xs-min) {
+//    #recurr-ul {
+//        height: 200px;
+//    }
+//}
 .event-list > li > time {
     display: inline-block;
     width: 100%;
@@ -312,11 +356,11 @@ body {
     font-weight: 300;
     line-height: 1;
 }
-@media (min-width: @screen-xs-min) {
-    .event-list > li > time > .day-of-week {
-        margin-top: 38px;
-    }
-}
+//@media (min-width: @screen-xs-min) {
+//    .event-list > li > time > .day-of-week {
+//        margin-top: 38px;
+//    }
+//}
 .event-list > li time > .month {
     display: block;
     font-size: 24pt;

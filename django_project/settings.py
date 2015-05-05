@@ -121,7 +121,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'materialize_static'),
     os.path.join(BASE_DIR, 'theme/static'),
     os.path.join(BASE_DIR, 'request/static'),
 )
@@ -139,7 +139,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'materialize_templates'),
     os.path.join(BASE_DIR, 'django_project/templates'),
     os.path.join(BASE_DIR, 'request/templates'),
     os.path.join(BASE_DIR, 'theme/templates'),
