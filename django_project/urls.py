@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', IndexView.as_view(), name='home'),
     # url(r'^blog/', include('blog.urls')),
-
+    url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt')),
     url(r'^admin/', include(admin.site.urls)),
 
     # News
