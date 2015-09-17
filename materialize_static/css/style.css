@@ -22,10 +22,10 @@ body {
   padding: 0;
 }
 .btn {
-  background-color: #448aff;
+  background-color: #607d8b;
 }
 .btn:hover {
-  background-color: #82b1ff;
+  background-color: #78909c;
 }
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
