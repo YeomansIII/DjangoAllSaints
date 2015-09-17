@@ -28,7 +28,6 @@ INSTALLED_APPS = (
     'django_admin_bootstrapped.bootstrap3',
     'django_admin_bootstrapped',
     'django.contrib.admin',
-    'request',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
