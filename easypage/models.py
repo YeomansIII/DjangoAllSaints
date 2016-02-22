@@ -3,6 +3,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from blanc_basic_assets.fields import AssetForeignKey
 
+
 class QuickLink(models.Model):
     image_file = AssetForeignKey('assets.Image')
     name = models.CharField(max_length=50)
@@ -13,8 +14,10 @@ class QuickLink(models.Model):
 
     def __str__(self):              # __unicode__ on Python 2
         return self.name
+
     def __unicode__(self):              # __unicode__ on Python 2
         return unicode(self.name)
+
 
 class Carousel(models.Model):
     image_file = AssetForeignKey('assets.Image')
@@ -27,8 +30,10 @@ class Carousel(models.Model):
 
     def __str__(self):              # __unicode__ on Python 2
         return self.name
+
     def __unicode__(self):              # __unicode__ on Python 2
         return unicode(self.name)
+
 
 class Featurette(models.Model):
     image_file = AssetForeignKey('assets.Image')
@@ -37,10 +42,24 @@ class Featurette(models.Model):
     heading_link = models.CharField(max_length=300, blank=True)
     heading2 = models.CharField(max_length=50, blank=True)
     body = models.TextField(max_length=150)
-    button_text = models.CharField(max_length=20, blank=True, default=u'View details »')
+    button_text = models.CharField(
+        max_length=20, blank=True, default=u'View details »')
     link = models.CharField(max_length=300, blank=True)
 
     def __str__(self):              # __unicode__ on Python 2
         return self.name
+
     def __unicode__(self):              # __unicode__ on Python 2
         return unicode(self.name)
+
+
+class Newsletter(models.Model):
+    pdf_file = AssetForeignKey('assets.File')
+    month = models.CharField(max_length=20)
+    year = models.CharField()
+
+    def __str__(self):              # __unicode__ on Python 2
+        return self.month + ' ' + self.year
+
+    def __unicode__(self):              # __unicode__ on Python 2
+        return unicode(self.month + ' ' + self.year)
