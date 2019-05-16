@@ -18,21 +18,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 import config
 DEBUG = config.DEBUG
-TEMPLATE_DEBUG = config.TEMPLATE_DEBUG
 ALLOWED_HOSTS = config.ALLOWED_HOSTS
-
+SITE_ID = 1
 
 # Application definition
 
 INSTALLED_APPS = (
-    'django_admin_bootstrapped.bootstrap3',
-    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'blanc_basic_assets',
     'blanc_basic_news',
     'mptt',
@@ -44,7 +42,6 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'request.middleware.RequestMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -157,23 +154,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Templates
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#templates
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
-    os.path.join(BASE_DIR, 'django_project/templates'),
-    os.path.join(BASE_DIR, 'request/templates'),
-    os.path.join(BASE_DIR, 'theme/templates'),
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.core.context_processors.request',
-    'django.contrib.messages.context_processors.messages',
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 
 # Logging
@@ -197,7 +192,7 @@ LOGGING = {
             'class': 'logging.StreamHandler',
         },
         'null': {
-            'class': 'django.utils.log.NullHandler',
+            'class': 'logging.NullHandler',
         },
         'mail_admins': {
             'level': 'ERROR',
